@@ -90,7 +90,8 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/editTextWebAddress"
-            android:layout_weight="0.06" />
+            android:layout_weight="0.06"
+            android:hint="Copy Web Address Here" />
 
         <Button
             android:text="Add Recipe"

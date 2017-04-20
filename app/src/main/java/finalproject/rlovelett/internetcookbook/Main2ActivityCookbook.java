@@ -53,7 +53,7 @@ public class Main2ActivityCookbook extends AppCompatActivity {
         });
 
         signOutBttn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { //A listner for the Sign Out button, returns user to starting screen
+            public void onClick(View v) { //A listener for the Sign Out button, returns user to starting screen
                 Intent returnIntent = getIntent();
                 returnIntent.putExtra("result", 0);
                 setResult(Activity.RESULT_OK, returnIntent);
@@ -64,7 +64,7 @@ public class Main2ActivityCookbook extends AppCompatActivity {
         });
 
         addRCPBttn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { //A listner for the Add Recipe button, takes user to add recipe activity to add new recipe to array
+            public void onClick(View v) { //A listener for the Add Recipe button, takes user to add recipe activity to add new recipe to array
                 Intent thrdActIntent = new Intent(Main2ActivityCookbook.this, AddRecipe.class);
                 startActivityForResult(thrdActIntent, 1);
 
