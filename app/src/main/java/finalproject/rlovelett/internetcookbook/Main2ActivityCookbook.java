@@ -2,6 +2,7 @@ package finalproject.rlovelett.internetcookbook;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.Serializable;
 
 public class Main2ActivityCookbook extends AppCompatActivity {
 
@@ -46,9 +49,15 @@ public class Main2ActivityCookbook extends AppCompatActivity {
         recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                //Open up webpage with the found website link?
-                //start second implicit intent?
-
+                //Open up webpage with the found website link or selected recipe
+                Recipe rcp = (Recipe) parent.getItemAtPosition(position);
+                String selectedRecipeURL = rcp.getWebURL();
+                //start second implicit intent
+                Uri webpage = Uri.parse(selectedRecipeURL);
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 
@@ -80,7 +89,13 @@ public class Main2ActivityCookbook extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK){
                 String result = data.getStringExtra("result");
                 //add whatever code to update recipe list list here?
-
+                //Bundle extras = getIntent().getExtras();
+                String name = data.getStringExtra("newName");
+                String time = data.getStringExtra("newTime");
+                String dishType = data.getStringExtra("newDish");
+                String webAddress = data.getStringExtra("newURL");
+                Recipe newRecipe = new Recipe(name, time, dishType, webAddress);
+                recipeAdapter.add(newRecipe);
             }
         }
     }//onActivityResult

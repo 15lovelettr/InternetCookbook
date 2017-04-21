@@ -1,41 +1,43 @@
 package finalproject.rlovelett.internetcookbook;
 
+import java.io.Serializable;
+
 /**
  * Created by rlovelett on 4/10/2017.
  */
 
-public class Recipe { //implements Serializable?
+public class Recipe implements Serializable{ //implements serializable for AddRecipe intent return
 
     private String name;//name of the Recipe/Food
-    private int cookTime;//Time required to make the recipe: prep + cook time
+    private String cookTime;//Time required to make the recipe: prep + cook time
     private String dishType;//What course is it served for? Breakfast? Lunch? Dinner?
     private String webURL;//WebURL of recipe, if any
 
     String courseNames[] = {"Breakfast", "Lunch", "Dinner"};//Names used for DishType variable. FINISH!!!!!!!
 
-    public Recipe(String name, int cookTime, int dishType) {
+    public Recipe(String name, String cookTime, String dishType) {
         this.name = name;
         this.cookTime = cookTime;
-        this.dishType = determineCourse(dishType);
+        this.dishType = dishType;
     }
 
-    public Recipe(String name, int cookTime, int dishType, String webURL) {
+    public Recipe(String name, String cookTime, String dishType, String webURL) {
         this.name = name;
         this.cookTime = cookTime;
-        this.dishType = determineCourse(dishType);
+        this.dishType = dishType;
         this.webURL = webURL;
     }
 
-    public String determineCourse(int dishType){
+    /*public String determineCourse(String dishType){
         String courseName = "";
 
-        if(dishType == 0) {
+        if(dishType.equals(0)) {
             courseName = courseNames[0];
         }
-        else if(dishType == 1) {
+        else if(dishType.equals(1)) {
             courseName = courseNames[1];
         }
-        else if(dishType == 2) {
+        else if(dishType.equals(2)) {
             courseName = courseNames[2];
         }
         else {
@@ -44,6 +46,7 @@ public class Recipe { //implements Serializable?
 
         return courseName;
     }
+    */
 
     public String getName() {
         return name;
@@ -53,11 +56,11 @@ public class Recipe { //implements Serializable?
         this.name = name;
     }
 
-    public int getCookTime() {
+    public String getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(int cookTime) {
+    public void setCookTime(String cookTime) {
         this.cookTime = cookTime;
     }
 

@@ -9,28 +9,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="finalproject.rlovelett.internetcookbook.MainActivity"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:ignore="DisableBaselineAlignment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight,UselessParent">
 
         <TextView
-            android:text="Log into My Cookbook:"
+            android:text="@string/log_into_my_cookbook"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:id="@+id/textViewTitle"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <TextView
-            android:text="Email"
+            android:text="@string/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
             android:layout_weight="1"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="NestedWeights" />
 
         <EditText
             android:layout_width="match_parent"
@@ -39,10 +42,11 @@
             android:ems="10"
             android:id="@+id/editTextEmail"
             android:layout_weight="1"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="LabelFor,TextFields" />
 
         <TextView
-            android:text="Password"
+            android:text="@string/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -55,7 +59,8 @@
             android:ems="10"
             android:id="@+id/editTextPass"
             android:layout_weight="1"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -64,18 +69,20 @@
             android:layout_weight="1">
 
             <Button
-                android:text="Login"
+                android:text="@string/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonLogin"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:text="Create User"
+                android:text="@string/create_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonCreateUser"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 

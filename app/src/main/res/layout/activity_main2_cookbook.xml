@@ -17,11 +17,13 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="My Recipes:"
+            android:text="@string/my_recipes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:fontFamily="casual"
+            android:textStyle="normal|bold" />
 
         <ListView
             android:layout_width="match_parent"
@@ -34,26 +36,29 @@
             android:layout_height="match_parent">
 
             <Button
-                android:text="Add Recipe"
+                android:text="@string/add_recipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonAddRecipe"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
 
             <Button
-                android:text="Sign Out"
+                android:text="@string/sign_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonSignOut"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
-        android:text="Button"
+        android:text="@string/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight" />
 </LinearLayout>
