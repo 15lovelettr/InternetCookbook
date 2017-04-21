@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 /**
+ * Class RecipeAdapter - Adapter that helps display the various recipes saved in the Main2ActivityCookbook class.
+ * Diaplays the recipe name, cook time, and dish type that the user selected.
+ *
  * Created by rlovelett on 4/19/2017.
  */
 
@@ -19,7 +22,6 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
 
     public RecipeAdapter(Context context, int resource, int textViewResourceId, RecipeList recipeList) {
         super(context, resource, textViewResourceId, recipeList.getList());
-
         this.context = context;
         this.recipeList = recipeList;
     }
@@ -27,16 +29,16 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.recipe_list_row, null);
-        Recipe rcp = recipeList.getRecipe(position);
+        Recipe rcp = recipeList.getRecipe(position); //get recipe from x position and display it
 
-        TextView recipeName = (TextView) view.findViewById(R.id.textViewName);
-        recipeName.setText("Name: " + rcp.getName());
+        TextView recipeName = (TextView) view.findViewById(R.id.textViewName); //Display recipe name
+        recipeName.setText(rcp.getName());
 
-        TextView recipeTime = (TextView) view.findViewById(R.id.textViewTime);
-        recipeTime.setText("Cook Time: " + rcp.getCookTime());
+        TextView recipeTime = (TextView) view.findViewById(R.id.textViewTime); //Display recipe cook time
+        recipeTime.setText(rcp.getCookTime());
 
-        TextView recipeType = (TextView) view.findViewById(R.id.textViewType);
-        recipeType.setText("Dish Type: " + rcp.getDishType());
+        TextView recipeType = (TextView) view.findViewById(R.id.textViewType); //Displays recipe dish type
+        recipeType.setText(rcp.getDishType());
 
         return view;
     }

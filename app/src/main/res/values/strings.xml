@@ -24,7 +24,10 @@
     <string name="whole_number">Whole Number</string>
     <string-array name="dish_type_list">
         <item>Breakfast</item>
+        <item>Brunch</item>
         <item>Lunch</item>
+        <item>Snack</item>
         <item>Dinner</item>
+        <item>Dessert</item>
     </string-array>
 </resources>

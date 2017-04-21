@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextEmail, editTextPass;
     private Button loginBttn, createUserBttn;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseAuth mAuth; //Used for Firebase user authentication. Allows user into app.
+    private FirebaseAuth.AuthStateListener mAuthListener; //Helps with Firebase user authentication.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,34 +46,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                if (user != null) { //If a user is signed in, sign them out and write a message of it in the app logs.
                     // User is signed in
                     Log.d("IntCook-MainActivity", "onAuthStateChanged:signed_in:" + user.getUid());
                     signOut();
                     Log.d("IntCook-MainActivity", "onAuthStateChanged:signing_user_out:" + user.getUid());
-                } else {
+                } else { //Otherwise, if user is signed out, do nothing.
                     // User is signed out
                     Log.d("IntCook-MainActivity", "onAuthStateChanged:signed_out");
                 }
-                // ...
             }
         };
 
         loginBttn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { //A Listener for the Login Button, allows a user to "Login" into Firebase
-                //Log.d("CIS3334", "normal login "); //Logs in a user normally with Firebase
                 signIn(editTextEmail.getText().toString(), editTextPass.getText().toString());
             }
         });
 
         createUserBttn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) { //A listner for the Create User Button, creates a new user account in Firebase
-                //Log.d("CIS3334", "Create Account "); //Creates a new user account in Firebase
+            public void onClick(View v) { //A listener for the Create User Button, creates a new user account in Firebase
                 createAccount(editTextEmail.getText().toString(), editTextPass.getText().toString());
             }
         });
-
-
     }
 
     /*
@@ -106,23 +101,20 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d("IntCook-MainActivity", "createUserWithEmail:onComplete:" + task.isSuccessful());
-
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
+                        if (!task.isSuccessful()) {//If account creation fails, notify the user to try again.
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        else {
+                        else {//If account creation succeeds, start a new intent to let user to use app.
                             Log.d("IntCook-MainActivity", "signInWithEmail:onComplete:" + task.isSuccessful());
                             Toast.makeText(MainActivity.this, "Sign-in Successful.",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent secActIntent = new Intent(MainActivity.this, Main2ActivityCookbook.class);
-                            startActivityForResult(secActIntent, 0);
+                                    Toast.LENGTH_SHORT).show(); //popup message for user
+                            Intent secActIntent = new Intent(MainActivity.this, Main2ActivityCookbook.class);//start new activity and wait for signout result to return
+                            startActivityForResult(secActIntent, 0); //call this method to process the signout request from second activity.
                         }
-
-                        // ...
                     }
                 });
     }
@@ -137,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d("IntCook-MainActivity", "signInWithEmail:onComplete:" + task.isSuccessful());
-
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
@@ -149,12 +140,10 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             Log.d("IntCook-MainActivity", "signInWithEmail:onComplete:" + task.isSuccessful());
                             Toast.makeText(MainActivity.this, "Sign-in Successful.",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent secActIntent = new Intent(MainActivity.this, Main2ActivityCookbook.class);
-                            startActivityForResult(secActIntent, 0);
+                                    Toast.LENGTH_SHORT).show();//popup message for user
+                            Intent secActIntent = new Intent(MainActivity.this, Main2ActivityCookbook.class); //start new activity and wait for signout result to return
+                            startActivityForResult(secActIntent, 0); //call this method to process the signout request from second activity.
                         }
-
-                        // ...
                     }
                 });
     }
@@ -162,8 +151,16 @@ public class MainActivity extends AppCompatActivity {
     /*
     * signOut() - signs a user out of the Firebase database. Login info is saved though.
     **/
-    private void signOut () { mAuth.signOut(); }
+    private void signOut () {
+        mAuth.signOut();
+    }
 
+    /**
+     * onActivityResult() - once second activity finishes, and returns an intent, signout the current user.
+     * @param requestCode - code that ensures the proper activity has closed
+     * @param resultCode - second code from activity itself that ensures the activity closed okay
+     * @param data - the Intent returned from the second activity
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -175,6 +172,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }//onActivityResult
 }
-
-//YQL screen scraper - getting URL from a website in  JSON file
 

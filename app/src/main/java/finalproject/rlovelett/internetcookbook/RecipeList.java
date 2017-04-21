@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Holds an arraylist of Recipes
+ * Class RecipeList - Holds and manages an arraylist of Recipes.
  *
  * Created by rlovelett on 4/19/2017.
  */
@@ -29,9 +29,9 @@ public class RecipeList {
     }
 
     /**
-     * Procides access to one heart rate object
+     * Procides access to recipe object
      * @param index The array index of the heart rate object in the array list
-     * @return The HeartRate object corresponding to the array index given
+     * @return The Recipe object corresponding to the array index given
      */
     public Recipe getRecipe(Integer index) {
         return recipeArrayList.get(index);
